@@ -52,7 +52,7 @@ export default function LoginPage() {
       style={{
         minHeight: '100vh',
         backgroundColor: '#bfdbfe', /* Slightly paler blue background */
-        backgroundImage: 'url("/login-bg.jpg")',
+        backgroundImage: 'url("/EIS-Employee-Information-System/login-bg.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
