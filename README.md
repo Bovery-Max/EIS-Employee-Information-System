@@ -12,7 +12,7 @@ Compliant with Turkish Labor Law (İş Kanunu) · Clean UI · Multi-role approva
 [![React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react)](https://react.dev/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-[📸 Screenshots](#-screenshots) · [🚀 Getting Started](#-getting-started) · [👥 Demo Accounts](#-demo-accounts) · [🗂️ Project Structure](#️-project-structure)
+[🚀 Getting Started](#-getting-started) · [👥 Demo Accounts](#-demo-accounts) · [🗂️ Project Structure](#️-project-structure)
 
 </div>
 
