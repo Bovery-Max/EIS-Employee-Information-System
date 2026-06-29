@@ -4,4 +4,9 @@
  */
 module.exports = {
   reactStrictMode: true,
+  output: 'export',
+  basePath: '/EIS-Employee-Information-System',
+  images: {
+    unoptimized: true,
+  },
 };
