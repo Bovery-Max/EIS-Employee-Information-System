@@ -1,0 +1,34 @@
+{
+  "name": "eis-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "api:dev": "npm --workspace=apps/api run dev",
+    "db:push": "npm --workspace=packages/db run db:push",
+    "test": "npm test"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.19.43",
+    "@types/supertest": "^2.0.16",
+    "jest": "^29.7.0",
+    "npm-run-all": "^4.1.5",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.4.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

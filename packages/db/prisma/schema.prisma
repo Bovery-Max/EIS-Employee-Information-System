@@ -1,0 +1,162 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  HR
+  DEPARTMENT_MANAGER
+  EMPLOYEE
+}
+
+enum LeaveRequestStatus {
+  PENDING_MANAGER
+  PENDING_HR
+  APPROVED
+  REJECTED
+}
+
+enum ApprovalStepStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Company {
+  company_id   BigInt   @id @default(autoincrement())
+  name         String
+  address      String?
+  phone_number String?
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  departments Department[]
+  users       User[]
+}
+
+model Department {
+  department_id BigInt   @id @default(autoincrement())
+  company_id    BigInt
+  name          String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  company Company @relation(fields: [company_id], references: [company_id], onDelete: Cascade)
+  users   User[]
+}
+
+model User {
+  user_id       BigInt   @id @default(autoincrement())
+  company_id    BigInt
+  department_id BigInt?
+  email         String   @unique
+  password_hash String
+  first_name    String?
+  last_name     String?
+  role          UserRole @default(EMPLOYEE)
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  company    Company    @relation(fields: [company_id], references: [company_id], onDelete: Cascade)
+  department Department? @relation(fields: [department_id], references: [department_id])
+  subordinates OrganizationTree[] @relation("manager")
+  manager      OrganizationTree? @relation("employee", fields: [user_id], references: [employee_id])
+}
+
+model OrganizationTree {
+  employee_id BigInt @id
+  manager_id  BigInt?
+
+  employee User @relation("employee", fields: [employee_id], references: [user_id], onDelete: Cascade)
+  manager  User? @relation("manager", fields: [manager_id], references: [user_id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model LeaveType {
+  leave_type_id     BigInt  @id @default(autoincrement())
+  name              String  @unique
+  description       String?
+  requires_document Boolean @default(false)
+  exclude_weekends  Boolean @default(false)
+  max_days_per_year Int?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  leave_requests LeaveRequest[]
+}
+
+model LeaveBalance {
+  balance_id           BigInt   @id @default(autoincrement())
+  user_id              BigInt
+  year                 Int
+  annual_leave_balance Decimal(6,2) @default(0)
+  carryover_days       Decimal(6,2) @default(0)
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
+
+  user User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+  @@unique([user_id, year])
+}
+
+model LeaveRequest {
+  request_id   BigInt   @id @default(autoincrement())
+  user_id      BigInt
+  leave_type_id BigInt
+  start_date   DateTime
+  end_date     DateTime
+  total_days   Decimal(6,2)
+  status       LeaveRequestStatus @default(PENDING_MANAGER)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  user      User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  leaveType LeaveType @relation(fields: [leave_type_id], references: [leave_type_id])
+  documents LeaveRequestDocument[]
+  approvals ApprovalStep[]
+}
+
+model LeaveRequestDocument {
+  document_id BigInt @id @default(autoincrement())
+  request_id  BigInt
+  file_path   String
+  uploaded_at DateTime @default(now())
+
+  request LeaveRequest @relation(fields: [request_id], references: [request_id], onDelete: Cascade)
+}
+
+model ApprovalStep {
+  step_id          BigInt @id @default(autoincrement())
+  request_id       BigInt
+  approver_user_id BigInt
+  step_order       Int
+  status           ApprovalStepStatus @default(PENDING)
+  comment          String?
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  request  LeaveRequest @relation(fields: [request_id], references: [request_id], onDelete: Cascade)
+  approver User @relation(fields: [approver_user_id], references: [user_id])
+
+  @@unique([request_id, step_order])
+}
+
+model AuditLog {
+  audit_id   BigInt @id @default(autoincrement())
+  action     String
+  user_id    BigInt?
+  table_name String
+  record_id  String
+  details    Json?
+  created_at DateTime @default(now())
+
+  user User? @relation(fields: [user_id], references: [user_id])
+}
+

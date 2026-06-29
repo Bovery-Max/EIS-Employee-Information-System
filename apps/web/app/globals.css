@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global CSS variables and base styles */
+:root {
+  --color-header-bg: #2563eb;   /* Header background */
+  --color-header-text: #ffffff; /* Header text */
+  --color-button-bg: #16a34a;   /* Login button */
+  --color-button-text: #ffffff;/* Button text */
+  --color-bg: #f9fafb;          /* Page background */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  font-family: system-ui, sans-serif;
+}
+
+/* Header */
+header {
+  background-color: var(--color-header-bg);
+  color: var(--color-header-text);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+/* Welcome Card */
+.welcome-card {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.welcome-card h2 {
+  margin-bottom: 1.5rem;
+}
+
+.welcome-card button {
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* 1. Page Transition Animation */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-animate {
+  animation: pageFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. Skeleton Loader */
+@keyframes shimmer {
+  0% { background-position: -800px 0; }
+  100% { background-position: 800px 0; }
+}
+.skeleton-box {
+  background: #e2e8f0;
+  background-image: linear-gradient(to right, #e2e8f0 0%, #f1f5f9 20%, #e2e8f0 40%, #e2e8f0 100%);
+  background-repeat: no-repeat;
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite linear forwards;
+  border-radius: 8px;
+}
+.dark .skeleton-box {
+  background: #1e293b;
+  background-image: linear-gradient(to right, #1e293b 0%, #334155 20%, #1e293b 40%, #1e293b 100%);
+}
+
+/* 3. Gradient Avatars */
+.avatar-gradient-1 { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; }
+.avatar-gradient-2 { background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; }
+.avatar-gradient-3 { background: linear-gradient(135deg, #10b981, #3b82f6); color: white; }
+.avatar-gradient-4 { background: linear-gradient(135deg, #ec4899, #8b5cf6); color: white; }
+
+/* 4. Toast Notifications */
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+.toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.toast-message {
+  background: var(--bg-card, #ffffff);
+  color: var(--text-main, #0f172a);
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  padding: 14px 20px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  min-width: 280px;
+}
+.dark .toast-message {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #3b82f6;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* 5. Custom Select Component */
+.custom-select-container {
+  position: relative;
+  width: 100%;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+.custom-select-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 14px;
+  background-color: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-main, #0f172a);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.custom-select-trigger:hover {
+  border-color: #3b82f6;
+}
+.custom-select-trigger.open {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+.custom-select-trigger:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+.custom-select-icon {
+  color: var(--text-muted, #64748b);
+  transition: transform 0.2s;
+}
+.custom-select-icon.rotate {
+  transform: rotate(180deg);
+}
+.custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+  max-height: 250px;
+  overflow-y: auto;
+  animation: slideUp 0.15s ease-out;
+}
+.custom-select-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+}
+.custom-select-option {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text-main, #0f172a);
+  transition: background 0.15s;
+}
+.custom-select-option:hover {
+  background-color: var(--bg-hover, #f1f5f9);
+  color: #2563eb;
+}
+.custom-select-option.selected {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 500;
+}
+.dark .custom-select-trigger {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
+}
+.dark .custom-select-trigger:hover {
+  border-color: #3b82f6;
+}
+.dark .custom-select-dropdown {
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+.dark .custom-select-option {
+  color: #f8fafc;
+}
+.dark .custom-select-option:hover {
+  background-color: #334155;
+  color: #60a5fa;
+}
+.dark .custom-select-option.selected {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
