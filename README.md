@@ -113,7 +113,6 @@ The app will be available at **http://localhost:3000**
 | hr@eis.com | hr123 | HR |
 | manager@eis.com | manager123 | Manager |
 | employee@eis.com | emp123 | Employee |
-| guest@eis.com | guest123 | Guest |
 
 ---
 
