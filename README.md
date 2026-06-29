@@ -13,6 +13,7 @@ Compliant with Turkish Labor Law (İş Kanunu) · Clean UI · Multi-role approva
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
 [🚀 Getting Started](#-getting-started) · [👥 Demo Accounts](#-demo-accounts) · [🗂️ Project Structure](#️-project-structure)
+[🌐 Live Preview : https://bovery-max.github.io/EIS-Employee-Information-System/ ] 
 
 </div>
 
