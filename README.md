@@ -19,6 +19,13 @@ Compliant with Turkish Labor Law (İş Kanunu) · Clean UI · Multi-role approva
 
 ---
 
+## 🌐 Live Preview
+
+You can check out the live version of the project here:
+👉 **[EIS Live Preview](https://bovery-max.github.io/EIS-Employee-Information-System/)**
+
+---
+
 ## 📋 Overview
 
 EIS is a leave management system designed for Turkish companies. It supports the full leave lifecycle — from employee submission to manager approval and final HR sign-off — while staying compliant with Turkish Labor Law (*4857 Sayılı İş Kanunu*).
