@@ -41,7 +41,6 @@ EIS is a leave management system designed for Turkish companies. It supports the
 | **HR** | Employee management, HR approval queue, audit logs, reports |
 | **Manager** | Team approvals, approve or reject with optional rejection reason |
 | **Employee** | Submit leave requests, view personal leave history and balance |
-| **Guest** | Read-only view of leave history and new request form |
 
 ### 📅 Turkish Labor Law Compliant Leave Types
 | Leave Type | Duration | Weekends | Document Required |
