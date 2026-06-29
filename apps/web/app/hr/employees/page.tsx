@@ -161,7 +161,7 @@ export default function EmployeesPage() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar role={role} currentPath={pathname} />
 
       {/* Styled styling container */}
@@ -424,7 +424,7 @@ export default function EmployeesPage() {
         }
       ` }} />
 
-      <main className="flex-1 p-8 text-slate-900 dark:text-slate-100">
+      <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden text-slate-900 dark:text-slate-100">
         {/* Header Title */}
         <div style={{ marginBottom: '24px' }}>
           <h2 style={{ color: "inherit", margin: 0, fontSize: '24px', fontWeight: 'bold' }}>{t('employeesPage', 'title') || 'Employee Directory'}</h2>
@@ -505,7 +505,7 @@ export default function EmployeesPage() {
           </div>
 
           <div style={{ overflowX: 'auto' }}>
-            <table className="employees-table">
+            <div className="overflow-x-auto w-full pb-4"><table className="employees-table">
               <thead>
                 <tr>
                   <th>{t('employeesPage', 'employee') || 'EMPLOYEE'}</th>
@@ -578,7 +578,7 @@ export default function EmployeesPage() {
                   </tr>
                 )}
               </tbody>
-            </table>
+            </table></div>
           </div>
         </div>
       </main>

@@ -142,7 +142,7 @@ export default function LeaveTypesPage() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar role={role} currentPath={pathname} />
 
       {/* Injected Premium Styles */}
@@ -402,7 +402,7 @@ export default function LeaveTypesPage() {
         }
       ` }} />
 
-      <main className="flex-1 p-8 text-slate-900 dark:text-slate-100">
+      <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden text-slate-900 dark:text-slate-100">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
           <div>
             <h2 style={{ color: "inherit", margin: 0, fontSize: '24px', fontWeight: 'bold' }}>{t('leaveTypes', 'title')}</h2>
@@ -431,7 +431,7 @@ export default function LeaveTypesPage() {
         </div>
 
         <div className="types-wrapper">
-          <table className="types-table">
+          <div className="overflow-x-auto w-full pb-4"><table className="types-table">
             <thead>
               <tr>
                 <th>{t('leaveTypes', 'leaveType')}</th>
@@ -489,7 +489,7 @@ export default function LeaveTypesPage() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         </div>
       </main>
 

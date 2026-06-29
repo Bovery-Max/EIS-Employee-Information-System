@@ -70,9 +70,9 @@ export default function LeaveHistoryPage() {
 
   if (!role || !loaded) {
     return (
-      <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <div className="flex flex-col lg:flex-row min-h-screen">
         <Sidebar role={role || 'EMPLOYEE'} currentPath={pathname} />
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden">
           <div className="skeleton-box" style={{ width: '200px', height: '40px', marginBottom: '8px' }}></div>
           <div className="skeleton-box" style={{ width: '300px', height: '20px', marginBottom: '32px' }}></div>
           <div className="skeleton-box" style={{ width: '100%', height: '400px' }}></div>
@@ -93,7 +93,7 @@ export default function LeaveHistoryPage() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar role={role} currentPath={pathname} />
 
       {/* Injected Premium Styles */}
@@ -262,7 +262,7 @@ export default function LeaveHistoryPage() {
         }
       ` }} />
 
-      <main className="flex-1 p-8 text-slate-900 dark:text-slate-100 page-animate">
+      <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden text-slate-900 dark:text-slate-100 page-animate">
         <div style={{ marginBottom: '24px' }}>
           <h2 style={{ color: "inherit", margin: 0, fontSize: '24px', fontWeight: 'bold' }}>{t('leaveHistory', 'title')}</h2>
           <p style={{ color: "var(--text-muted, #64748b)", margin: '4px 0 0 0', fontSize: '14px' }}>
@@ -271,7 +271,7 @@ export default function LeaveHistoryPage() {
         </div>
 
         <div className="history-wrapper">
-          <table className="history-table">
+          <div className="overflow-x-auto w-full pb-4"><table className="history-table">
             <thead>
               <tr>
                 <th>{t('leaveHistory', 'type')}</th>
@@ -391,7 +391,7 @@ export default function LeaveHistoryPage() {
                 </tr>
               )}
             </tbody>
-          </table>
+          </table></div>
         </div>
       </main>
     </div>

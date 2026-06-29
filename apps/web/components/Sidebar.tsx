@@ -167,6 +167,7 @@ export default function Sidebar({ role, currentPath }: SidebarProps) {
   const { lang, setLanguage, t } = useLanguage();
   const items = navConfig[role] || [];
   const [unreadCount, setUnreadCount] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const checkUnread = () => {
     if (typeof window !== 'undefined') {
@@ -207,20 +208,55 @@ export default function Sidebar({ role, currentPath }: SidebarProps) {
   };
 
   return (
-    <aside className="w-[250px] h-screen sticky top-0 bg-[#1e3a5f] text-white py-8 flex flex-col justify-between shrink-0 shadow-xl border-r border-[#152a45]">
-      <div>
-        {/* Logo and Role Badge */}
-        <div className="px-6 mb-10">
-          <div className="font-extrabold text-2xl tracking-tight text-white flex items-center gap-2">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            EIS
-          </div>
-          <div className="inline-block mt-2 text-[10px] font-bold uppercase tracking-wide bg-blue-500/15 text-blue-300 px-3 py-1 rounded-full border border-blue-500/25">
-            {translateRole(role, lang)} {t('sidebar', 'portal')}
-          </div>
+    <>
+      {/* Mobile Header */}
+      <div className="lg:hidden flex items-center justify-between bg-[#1e3a5f] text-white p-4 sticky top-0 z-40 shadow-md w-full">
+        <div className="font-extrabold text-xl tracking-tight flex items-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+          EIS
         </div>
+        <button onClick={() => setIsOpen(true)} className="p-2 bg-white/10 rounded-md hover:bg-white/20 transition-colors">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      {/* Backdrop for mobile */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm transition-opacity"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`fixed lg:sticky top-0 left-0 z-50 h-screen bg-[#1e3a5f] text-white py-8 flex flex-col justify-between shrink-0 shadow-xl border-r border-[#152a45] w-[250px] transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+        <div>
+          {/* Logo and Role Badge */}
+          <div className="px-6 mb-10 flex justify-between items-start">
+            <div>
+              <div className="font-extrabold text-2xl tracking-tight text-white flex items-center gap-2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                EIS
+              </div>
+              <div className="inline-block mt-2 text-[10px] font-bold uppercase tracking-wide bg-blue-500/15 text-blue-300 px-3 py-1 rounded-full border border-blue-500/25">
+                {translateRole(role, lang)} {t('sidebar', 'portal')}
+              </div>
+            </div>
+            <button onClick={() => setIsOpen(false)} className="lg:hidden p-1 text-slate-400 hover:text-white bg-white/5 rounded-md">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
 
         {/* Navigation List */}
         <nav className="flex flex-col gap-1">
@@ -301,5 +337,6 @@ export default function Sidebar({ role, currentPath }: SidebarProps) {
         </div>
       </div>
     </aside>
+    </>
   );
 }

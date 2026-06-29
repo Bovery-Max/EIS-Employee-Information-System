@@ -194,7 +194,7 @@ export default function NotificationsPage() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar role={role} currentPath="/notifications" />
 
       {/* Styled Notifications Center */}
@@ -378,7 +378,7 @@ export default function NotificationsPage() {
         }
       ` }} />
 
-      <main className="flex-1 p-8 text-slate-900 dark:text-slate-100">
+      <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden text-slate-900 dark:text-slate-100">
         <div style={{ marginBottom: '24px' }}>
           <h2 style={{ color: "inherit", margin: 0, fontSize: '24px', fontWeight: 'bold' }}>{t('notificationsPage', 'title')}</h2>
           <p style={{ color: "var(--text-muted, #64748b)", margin: '4px 0 0 0', fontSize: '14px' }}>

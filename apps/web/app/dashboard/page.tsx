@@ -183,16 +183,16 @@ export default function DashboardPage() {
 
   if (!role || !loaded) {
     return (
-      <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <div className="flex flex-col lg:flex-row min-h-screen">
         <Sidebar role={role || 'EMPLOYEE'} currentPath="/dashboard" />
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden">
           <div className="skeleton-box" style={{ width: '400px', height: '140px', marginBottom: '32px' }}></div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '32px', maxWidth: '1100px' }}>
             <div className="skeleton-box" style={{ height: '100px' }}></div>
             <div className="skeleton-box" style={{ height: '100px' }}></div>
             <div className="skeleton-box" style={{ height: '100px' }}></div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '24px', maxWidth: '1100px' }}>
+          <div className="section-container">
             <div className="skeleton-box" style={{ height: '300px' }}></div>
             <div className="skeleton-box" style={{ height: '300px' }}></div>
           </div>
@@ -240,7 +240,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar role={role} currentPath="/dashboard" />
 
       {/* Premium Dashboard CSS */}
@@ -447,7 +447,7 @@ export default function DashboardPage() {
         }
       ` }} />
 
-      <main className="flex-1 p-8 text-slate-900 dark:text-slate-100 page-animate">
+      <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden text-slate-900 dark:text-slate-100 page-animate">
         {/* Welcome Banner */}
         <div className="welcome-card">
           <h2 className="welcome-title">{getTimeBasedGreeting()}, {getTranslatedName(name || email || '')}!</h2>

@@ -82,9 +82,9 @@ export default function ManagerApprovalsPage() {
 
   if (!role || !loaded) {
     return (
-      <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <div className="flex flex-col lg:flex-row min-h-screen">
         <Sidebar role={role || 'MANAGER'} currentPath="/manager/approvals" />
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden">
           <div className="skeleton-box" style={{ width: '250px', height: '40px', marginBottom: '8px' }}></div>
           <div className="skeleton-box" style={{ width: '350px', height: '20px', marginBottom: '32px' }}></div>
           <div style={{ display: 'flex', gap: '24px', marginBottom: '32px' }}>
@@ -245,7 +245,7 @@ export default function ManagerApprovalsPage() {
   const countRejected = rows.filter(r => r.status === 'rejected_manager').length;
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar role={role} currentPath={pathname} />
 
       <style dangerouslySetInnerHTML={{ __html: `
@@ -568,7 +568,7 @@ export default function ManagerApprovalsPage() {
         }
       ` }} />
 
-      <main className="flex-1 p-8 text-slate-900 dark:text-slate-100 page-animate">
+      <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden text-slate-900 dark:text-slate-100 page-animate">
         {/* Title Header */}
         <div style={{ marginBottom: '24px' }}>
           <h2 style={{ color: "inherit", margin: 0, fontSize: '24px', fontWeight: 'bold' }}>{t('approvals', 'teamTitle') || 'Team Approvals Queue'}</h2>
@@ -647,7 +647,7 @@ export default function ManagerApprovalsPage() {
           </div>
 
           <div style={{ overflowX: 'auto' }}>
-            <table className="approvals-table">
+            <div className="overflow-x-auto w-full pb-4"><table className="approvals-table">
               <thead>
                 <tr>
                   <th>{t('approvals', 'employee') || 'EMPLOYEE'}</th>
@@ -811,7 +811,7 @@ export default function ManagerApprovalsPage() {
                   </tr>
                 )}
               </tbody>
-            </table>
+            </table></div>
           </div>
         </div>
       </main>

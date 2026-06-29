@@ -261,7 +261,7 @@ export default function HRApprovalsPage() {
   const countRejected = rows.filter(r => r.status === 'rejected_hr').length;
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <Sidebar role={role} currentPath={pathname} />
 
       <style dangerouslySetInnerHTML={{ __html: `
@@ -581,7 +581,7 @@ export default function HRApprovalsPage() {
         }
       ` }} />
 
-      <main className="flex-1 p-8 text-slate-900 dark:text-slate-100">
+      <main className="flex-1 p-4 lg:p-8 w-full overflow-x-hidden text-slate-900 dark:text-slate-100">
         {/* Title Header */}
         <div style={{ marginBottom: '24px' }}>
           <h2 style={{ color: "inherit", margin: 0, fontSize: '24px', fontWeight: 'bold' }}>{t('approvals', 'title') || 'HR Leave Approvals'}</h2>
@@ -660,7 +660,7 @@ export default function HRApprovalsPage() {
           </div>
 
           <div style={{ overflowX: 'auto' }}>
-            <table className="approvals-table">
+            <div className="overflow-x-auto w-full pb-4"><table className="approvals-table">
               <thead>
                 <tr>
                   <th>{t('approvals', 'employee') || 'EMPLOYEE'}</th>
@@ -832,7 +832,7 @@ export default function HRApprovalsPage() {
                   </tr>
                 )}
               </tbody>
-            </table>
+            </table></div>
           </div>
         </div>
       </main>
