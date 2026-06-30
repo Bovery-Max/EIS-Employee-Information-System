@@ -236,3 +236,25 @@ footer {
   color: #60a5fa;
 }
 
+/* Custom Date Input Override */
+input[type="date"].custom-date-input {
+  position: relative;
+}
+input[type="date"].custom-date-input::-webkit-datetime-edit {
+  color: transparent;
+}
+input[type="date"].custom-date-input:focus::-webkit-datetime-edit,
+input[type="date"].custom-date-input:valid::-webkit-datetime-edit {
+  color: inherit !important;
+}
+input[type="date"].custom-date-input::before {
+  content: attr(data-placeholder);
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+input[type="date"].custom-date-input:focus::before,
+input[type="date"].custom-date-input:valid::before {
+  display: none;
+}

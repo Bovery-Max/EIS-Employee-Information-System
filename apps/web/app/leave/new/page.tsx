@@ -12,10 +12,6 @@ export default function NewLeavePage() {
   const { t, lang } = useLanguage();
   const [role, setRole] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
-  
-  // Date input focus states for custom placeholders
-  const [startFocused, setStartFocused] = useState(false);
-  const [endFocused, setEndFocused] = useState(false);
 
   // Form state
   const [type, setType] = useState('Annual Leave');
@@ -368,30 +364,26 @@ export default function NewLeavePage() {
                 <label htmlFor="startDate">{t('leaveRequest', 'startDate')}</label>
                 <input
                   id="startDate"
-                  type={startFocused || start ? "date" : "text"}
-                  placeholder={lang === 'en' ? "mm/dd/yyyy" : "gg.aa.yyyy"}
-                  onFocus={() => setStartFocused(true)}
-                  onBlur={() => setStartFocused(false)}
+                  type="date"
+                  data-placeholder={lang === 'en' ? "mm/dd/yyyy" : "gg/aa/yyyy"}
                   lang={lang === 'en' ? 'en-US' : 'tr-TR'}
                   value={start}
                   onChange={(e) => setStart(e.target.value)}
                   required
-                  className="form-control"
+                  className="form-control custom-date-input"
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="endDate">{t('leaveRequest', 'endDate')}</label>
                 <input
                   id="endDate"
-                  type={endFocused || end ? "date" : "text"}
-                  placeholder={lang === 'en' ? "mm/dd/yyyy" : "gg.aa.yyyy"}
-                  onFocus={() => setEndFocused(true)}
-                  onBlur={() => setEndFocused(false)}
+                  type="date"
+                  data-placeholder={lang === 'en' ? "mm/dd/yyyy" : "gg/aa/yyyy"}
                   lang={lang === 'en' ? 'en-US' : 'tr-TR'}
                   value={end}
                   onChange={(e) => setEnd(e.target.value)}
                   required
-                  className="form-control"
+                  className="form-control custom-date-input"
                 />
               </div>
             </div>
