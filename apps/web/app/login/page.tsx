@@ -49,14 +49,13 @@ export default function LoginPage() {
 
   return (
     <div
+      className="login-wrapper"
       style={{
         minHeight: '100vh',
-        backgroundColor: '#bfdbfe', /* Slightly paler blue background */
         backgroundImage: 'url("/EIS-Employee-Information-System/login-bg.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundBlendMode: 'overlay', /* Blends the image with the pale blue background */
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -67,6 +66,16 @@ export default function LoginPage() {
     >
       {/* Injected Premium Styles */}
       <style dangerouslySetInnerHTML={{ __html: `
+        .login-wrapper {
+          background-color: #bfdbfe;
+          background-blend-mode: overlay;
+        }
+
+        .dark .login-wrapper {
+          background-color: #0f172a;
+          background-blend-mode: multiply;
+        }
+
         .login-card {
           background-color: rgba(255, 255, 255, 0.45);
           backdrop-filter: blur(20px);
@@ -80,6 +89,11 @@ export default function LoginPage() {
           box-sizing: border-box;
           display: flex;
           flex-direction: column;
+        }
+
+        .dark .login-card {
+          background-color: rgba(30, 41, 59, 0.65);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         }
 
         .login-logo {
@@ -102,6 +116,10 @@ export default function LoginPage() {
           font-weight: 600;
         }
 
+        .dark .login-subtitle {
+          color: #cbd5e1;
+        }
+
         .form-group {
           display: flex;
           flex-direction: column;
@@ -115,6 +133,10 @@ export default function LoginPage() {
           color: #334155;
           text-transform: uppercase;
           letter-spacing: 0.5px;
+        }
+
+        .dark .form-group label {
+          color: #94a3b8;
         }
 
         .form-input {
@@ -131,10 +153,21 @@ export default function LoginPage() {
           box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
         }
 
+        .dark .form-input {
+          background-color: rgba(15, 23, 42, 0.5);
+          color: #f1f5f9;
+          border-color: rgba(255, 255, 255, 0.1);
+        }
+
         .form-input:focus {
           background-color: #ffffff;
           border-color: #8b5cf6;
           box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+        }
+
+        .dark .form-input:focus {
+          background-color: rgba(15, 23, 42, 0.9);
+          border-color: #8b5cf6;
         }
 
         .error-banner {
@@ -190,8 +223,16 @@ export default function LoginPage() {
           user-select: none;
         }
 
+        .dark .demo-accounts-trigger {
+          color: #94a3b8;
+        }
+
         .demo-accounts-trigger:hover {
           color: #0f172a;
+        }
+
+        .dark .demo-accounts-trigger:hover {
+          color: #f8fafc;
         }
 
         .demo-list {
@@ -204,6 +245,11 @@ export default function LoginPage() {
           display: flex;
           flex-direction: column;
           gap: 6px;
+        }
+
+        .dark .demo-list {
+          border-color: rgba(255, 255, 255, 0.15);
+          background-color: rgba(15, 23, 42, 0.4);
         }
 
         .demo-item {
@@ -219,10 +265,19 @@ export default function LoginPage() {
           border: 1px solid #e2e8f0;
         }
 
+        .dark .demo-item {
+          color: #94a3b8;
+        }
+
         .demo-item:hover {
           border-color: #2563eb;
           color: #2563eb;
           background-color: #eff6ff;
+        }
+
+        .dark .demo-item:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          color: #f8fafc;
         }
       ` }} />
 
