@@ -3,6 +3,7 @@
 import React, { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLanguage } from '../../context/LanguageContext';
+import ThemeToggle from '../../components/ThemeToggle';
 
 // Mock credentials
 const CREDENTIALS = {
@@ -61,9 +62,14 @@ export default function LoginPage() {
         justifyContent: 'center',
         padding: '1.5rem',
         boxSizing: 'border-box',
-        fontFamily: 'system-ui, -apple-system, sans-serif'
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        position: 'relative'
       }}
     >
+      <div style={{ position: 'absolute', top: '24px', right: '24px', zIndex: 50 }}>
+        <ThemeToggle />
+      </div>
+
       {/* Injected Premium Styles */}
       <style dangerouslySetInnerHTML={{ __html: `
         .login-wrapper {
