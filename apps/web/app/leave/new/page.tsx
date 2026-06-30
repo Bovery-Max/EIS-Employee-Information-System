@@ -365,6 +365,7 @@ export default function NewLeavePage() {
                 <input
                   id="startDate"
                   type="date"
+                  lang={lang === 'en' ? 'en-US' : 'tr-TR'}
                   value={start}
                   onChange={(e) => setStart(e.target.value)}
                   required
@@ -376,6 +377,7 @@ export default function NewLeavePage() {
                 <input
                   id="endDate"
                   type="date"
+                  lang={lang === 'en' ? 'en-US' : 'tr-TR'}
                   value={end}
                   onChange={(e) => setEnd(e.target.value)}
                   required
