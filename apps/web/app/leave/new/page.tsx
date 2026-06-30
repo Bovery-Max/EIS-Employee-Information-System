@@ -9,7 +9,7 @@ import CustomSelect from '../../../components/CustomSelect';
 export default function NewLeavePage() {
   const router = useRouter();
   const pathname = usePathname();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [role, setRole] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
 
