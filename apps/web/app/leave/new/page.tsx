@@ -12,6 +12,10 @@ export default function NewLeavePage() {
   const { t, lang } = useLanguage();
   const [role, setRole] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
+  
+  // Date input focus states for custom placeholders
+  const [startFocused, setStartFocused] = useState(false);
+  const [endFocused, setEndFocused] = useState(false);
 
   // Form state
   const [type, setType] = useState('Annual Leave');
@@ -364,7 +368,10 @@ export default function NewLeavePage() {
                 <label htmlFor="startDate">{t('leaveRequest', 'startDate')}</label>
                 <input
                   id="startDate"
-                  type="date"
+                  type={startFocused || start ? "date" : "text"}
+                  placeholder={lang === 'en' ? "mm/dd/yyyy" : "gg.aa.yyyy"}
+                  onFocus={() => setStartFocused(true)}
+                  onBlur={() => setStartFocused(false)}
                   lang={lang === 'en' ? 'en-US' : 'tr-TR'}
                   value={start}
                   onChange={(e) => setStart(e.target.value)}
@@ -376,7 +383,10 @@ export default function NewLeavePage() {
                 <label htmlFor="endDate">{t('leaveRequest', 'endDate')}</label>
                 <input
                   id="endDate"
-                  type="date"
+                  type={endFocused || end ? "date" : "text"}
+                  placeholder={lang === 'en' ? "mm/dd/yyyy" : "gg.aa.yyyy"}
+                  onFocus={() => setEndFocused(true)}
+                  onBlur={() => setEndFocused(false)}
                   lang={lang === 'en' ? 'en-US' : 'tr-TR'}
                   value={end}
                   onChange={(e) => setEnd(e.target.value)}
