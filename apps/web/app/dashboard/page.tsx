@@ -650,65 +650,65 @@ export default function DashboardPage() {
             <div className="actions-list">
               {role === 'ADMIN' && (
                 <>
-                  <a href="/admin/users" className="action-link">
+                  <Link href="/admin/users" className="action-link">
                     <span>{t('dashboard', 'manageUserAccounts')}</span>
                     <span>➔</span>
-                  </a>
-                  <a href="/admin/organization" className="action-link">
+                  </Link>
+                  <Link href="/admin/organization" className="action-link">
                     <span>{t('dashboard', 'updateOrgChart')}</span>
                     <span>➔</span>
-                  </a>
-                  <a href="/admin/audit-logs" className="action-link">
+                  </Link>
+                  <Link href="/admin/audit-logs" className="action-link">
                     <span>{t('dashboard', 'reviewAuditLogs')}</span>
                     <span>➔</span>
-                  </a>
+                  </Link>
                 </>
               )}
 
               {role === 'HR' && (
                 <>
-                  <a href="/hr/approvals" className="action-link">
+                  <Link href="/hr/approvals" className="action-link">
                     <span>{t('dashboard', 'processLeaveQueue')}</span>
                     <span>➔</span>
-                  </a>
-                  <a href="/hr/employees" className="action-link">
+                  </Link>
+                  <Link href="/hr/employees" className="action-link">
                     <span>{t('dashboard', 'viewEmpDb')}</span>
                     <span>➔</span>
-                  </a>
-                  <a href="/leave/history" className="action-link">
+                  </Link>
+                  <Link href="/leave/history" className="action-link">
                     <span>{t('dashboard', 'leaveHistoryLog')}</span>
                     <span>➔</span>
-                  </a>
+                  </Link>
                 </>
               )}
 
               {role === 'MANAGER' && (
                 <>
-                  <a href="/manager/approvals" className="action-link">
+                  <Link href="/manager/approvals" className="action-link">
                     <span>{t('dashboard', 'processTeamQueue')}</span>
                     <span>➔</span>
-                  </a>
-                  <a href="/leave/new" className="action-link">
+                  </Link>
+                  <Link href="/leave/new" className="action-link">
                     <span>{t('dashboard', 'submitPersonalLeave')}</span>
                     <span>➔</span>
-                  </a>
-                  <a href="/leave/history" className="action-link">
+                  </Link>
+                  <Link href="/leave/history" className="action-link">
                     <span>{t('dashboard', 'leaveHistoryLog')}</span>
                     <span>➔</span>
-                  </a>
+                  </Link>
                 </>
               )}
 
               {role === 'EMPLOYEE' && (
                 <>
-                  <a href="/leave/new" className="action-link">
+                  <Link href="/leave/new" className="action-link">
                     <span>{t('dashboard', 'requestNewLeave')}</span>
                     <span>➔</span>
-                  </a>
-                  <a href="/leave/history" className="action-link">
+                  </Link>
+                  <Link href="/leave/history" className="action-link">
                     <span>{t('dashboard', 'viewMyLeaveHistory')}</span>
                     <span>➔</span>
-                  </a>
+                  </Link>
                 </>
               )}
             </div>
