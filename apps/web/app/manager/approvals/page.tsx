@@ -223,6 +223,28 @@ export default function ManagerApprovalsPage() {
     );
   };
 
+  const submitReason = (id: string, email: string, type: string) => {
+    const toastContainer = document.createElement('div');
+    toastContainer.className = 'toast-container';
+    const toastMessage = document.createElement('div');
+    toastMessage.className = 'toast-message';
+    toastMessage.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> <span>${lang === 'tr' ? 'Ret sebebi başarıyla gönderildi.' : 'Rejection reason sent successfully.'}</span>`;
+    toastContainer.appendChild(toastMessage);
+    document.body.appendChild(toastContainer);
+
+    triggerNotification(
+      email,
+      'Leave Request Rejected with Reason',
+      `Your request (${type}) was rejected with a specific reason. Check your history.`,
+      '/leave/history'
+    );
+
+    setTimeout(() => {
+      toastMessage.style.animation = 'toastFadeOut 0.3s forwards';
+      setTimeout(() => document.body.removeChild(toastContainer), 300);
+    }, 3000);
+  };
+
   // Unique leave types for filter select
   const leaveTypes = ['ALL', ...Array.from(new Set(rows.map(r => r.type).filter(Boolean)))];
 
@@ -768,13 +790,35 @@ export default function ManagerApprovalsPage() {
                                 {t('approvals', 'rejected') || 'Rejected'}
                               </span>
                             </div>
-                            <input
-                              type="text"
-                              placeholder={t('approvals', 'reasonPlaceholder') || 'Reason for rejection'}
-                              value={row.rejectReason || ''}
-                              onChange={(e) => updateReason(row.id, e.target.value)}
-                              className="reject-reason-input"
-                            />
+                            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                              <input
+                                type="text"
+                                placeholder={t('approvals', 'reasonPlaceholder') || 'Reason for rejection'}
+                                value={row.rejectReason || ''}
+                                onChange={(e) => updateReason(row.id, e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') {
+                                    submitReason(row.id, row.email || getUserDetails(row.employee).email, row.type);
+                                  }
+                                }}
+                                className="reject-reason-input"
+                                style={{ paddingRight: '40px', width: '100%' }}
+                              />
+                              <button 
+                                onClick={() => submitReason(row.id, row.email || getUserDetails(row.employee).email, row.type)}
+                                title={lang === 'tr' ? 'Gönder' : 'Send'}
+                                style={{ 
+                                  position: 'absolute', right: '8px', background: 'none', border: 'none', 
+                                  cursor: 'pointer', color: '#3b82f6', padding: '4px', borderRadius: '4px' 
+                                }}
+                                className="hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                              >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                              </button>
+                            </div>
                           </div>
                         )}
 
