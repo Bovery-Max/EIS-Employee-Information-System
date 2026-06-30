@@ -258,10 +258,13 @@ export default function Sidebar({ role, currentPath }: SidebarProps) {
             </button>
           </div>
 
-        {/* Navigation List */}
         <nav className="flex flex-col gap-1">
           {items.map((item) => {
-            const isActive = currentPath === item.href;
+            // Remove trailing slash for exact matching, except for root '/'
+            const normalizedCurrentPath = currentPath.endsWith('/') && currentPath.length > 1 
+              ? currentPath.slice(0, -1) 
+              : currentPath;
+            const isActive = normalizedCurrentPath === item.href;
             return (
               <Link
                 key={item.href}
