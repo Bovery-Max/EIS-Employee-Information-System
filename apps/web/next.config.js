@@ -5,6 +5,7 @@
 module.exports = {
   reactStrictMode: true,
   output: 'export',
+  trailingSlash: true,
   basePath: '/EIS-Employee-Information-System',
   images: {
     unoptimized: true,
