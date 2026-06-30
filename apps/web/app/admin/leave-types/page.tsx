@@ -19,8 +19,13 @@ const initialLeaveTypes: LeaveTypeRow[] = [
   { id: '2', name: 'Paternity Leave', duration: '5 working days', weekends: false, document: true },
   { id: '3', name: 'Sick Leave', duration: 'Per medical report', weekends: true, document: true },
   { id: '4', name: 'Marriage Leave', duration: '3 working days', weekends: false, document: true },
-  { id: '5', name: 'Bereavement (1st degree)', duration: '3 working days', weekends: false, document: false },
-  { id: '6', name: 'Bereavement (2nd degree)', duration: '2 working days', weekends: false, document: false },
+  { id: '5', name: 'Bereavement Leave', duration: '3 working days', weekends: false, document: false },
+  { id: '6', name: 'Bereavement Leave (Sibling)', duration: '2 working days', weekends: false, document: false },
+  { id: '7', name: 'Maternity Leave (Prenatal)', duration: '8 weeks', weekends: true, document: true },
+  { id: '8', name: 'Maternity Leave (Postnatal)', duration: '8 weeks', weekends: true, document: true },
+  { id: '9', name: 'Nursing Leave', duration: '1.5 hours/day', weekends: false, document: false },
+  { id: '10', name: 'Birth Assistance Leave', duration: '15 days', weekends: false, document: true },
+  { id: '11', name: 'Unpaid Leave', duration: 'Varies', weekends: true, document: false },
 ];
 
 export default function LeaveTypesPage() {
@@ -67,7 +72,14 @@ export default function LeaveTypesPage() {
       const saved = localStorage.getItem('eis_leave_types');
       if (saved) {
         try {
-          setLeaveTypes(JSON.parse(saved));
+          const parsed = JSON.parse(saved);
+          // If they have the old incomplete list, force update to the new complete list
+          if (parsed.length <= 6 && !parsed.find((p: any) => p.name === 'Nursing Leave')) {
+            setLeaveTypes(initialLeaveTypes);
+            localStorage.setItem('eis_leave_types', JSON.stringify(initialLeaveTypes));
+          } else {
+            setLeaveTypes(parsed);
+          }
         } catch (e) {
           console.error('Error loading saved leave types', e);
         }
