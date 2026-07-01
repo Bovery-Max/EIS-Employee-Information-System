@@ -53,7 +53,7 @@ export default function LoginPage() {
       className="login-wrapper"
       style={{
         minHeight: '100vh',
-        backgroundImage: 'url("/EIS-Employee-Information-System/login-bg.jpg")',
+        backgroundImage: `url("${process.env.NODE_ENV === 'production' ? '/EIS-Employee-Information-System' : ''}/login-bg.jpg")`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
